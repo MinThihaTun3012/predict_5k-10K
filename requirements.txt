@@ -1,7 +1,7 @@
 streamlit == 1.8
 tensorflow == 2.8
 tensorflow-probability == 0.16
-opencv-python-headless == 4.5.5.62
+opencv-python-headless 
 streamlit_option_menu 
 matplotlib
 imutils
