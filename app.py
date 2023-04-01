@@ -25,7 +25,7 @@ st.set_page_config(
 #<---- functions start ---->
 
 # loaded the model from other path 
-@st.cache_data
+@st.cache
 def loadModel():
     model = tf.keras.models.load_model("v1.h5",compile= False)
     return model
