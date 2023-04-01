@@ -83,6 +83,7 @@ def getSquares(input):
     
     for i in range(0,6,2):
         document = four_point_transform(img_copy, rect_cnts[i].reshape(4, 2))
+        document = cv2.cvtColor(document, cv2.COLOR_BGR2RGB)
         three_notes.append(document)
         #   print(type(document), document.shape,  'type of doc')
         # show_images(['image', 'document'],  [document])
