@@ -152,6 +152,7 @@ elif option == "Money Classification With Color Background":
             else:
  
                  total += 10000
+            st.success(total)
         
         value = "The total Amount is",total,"Kyat"
         st.success(value)
