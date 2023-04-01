@@ -24,6 +24,13 @@ st.set_page_config(
 
 #<---- functions start ---->
 
+
+# Define a function to convert text to speech
+def text_to_speech(text):
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait()
+
 # loaded the model from other path 
 # @st.cache
 def loadModel():
@@ -158,9 +165,16 @@ elif option == ("Money Classification With White Background"):
         if genrate:
             prediction = model.predict(img_reshape)
             if prediction >= 0.5:
-                st.header("It is 5000 kyat")
+                text = "It is 5000 kyat"
+                st.header(text)
             else:
-                st.header("It is 10000 kyat")
+                text = "It is 10000 kyat"
+                st.header(text)
+            voice = st.button("Text To Speech")
+            if voice:
+                text_to_speech(text)
+                
+  
 
 
        
