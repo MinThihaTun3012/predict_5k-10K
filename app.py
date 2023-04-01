@@ -4,9 +4,7 @@ import tensorflow as tf
 import cv2
 from PIL import Image
 import numpy as np
-# import matplotlib.pyplot as plt
 import pyttsx3
-# import imutils
 from imutils.perspective import four_point_transform
 from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input as mobilenet_v2_preprocess_input
@@ -33,7 +31,6 @@ def text_to_speech(text):
     engine.runAndWait()
 
 # loaded the model from other path 
-# @st.cache
 def loadModel():
     model = tf.keras.models.load_model("v1.h5",compile= False)
     return model
@@ -57,7 +54,6 @@ def getSquares(input):
     img = cv2.imread(input)
     img = cv2.resize(img, (width, height))
     img_copy = img.copy() # for display purposes
-    # img_copy1 = img.copy() # for display purposes
 
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     blur_img = cv2.GaussianBlur(gray_img, (3, 3), 0)
@@ -85,11 +81,7 @@ def getSquares(input):
         document = four_point_transform(img_copy, rect_cnts[i].reshape(4, 2))
         document = cv2.cvtColor(document, cv2.COLOR_BGR2RGB)
         three_notes.append(document)
-        #   print(type(document), document.shape,  'type of doc')
-        # show_images(['image', 'document'],  [document])
         st.image(document)
-
-
 
 
 # <--- factions end --->
@@ -97,6 +89,7 @@ def getSquares(input):
 
 
 #<--- slide starting --->
+
 
 st.sidebar.image("img/dollar.jpg")
 
@@ -106,10 +99,11 @@ option = st.sidebar.selectbox("Chosse what you want to do",
 
 #<--- slide ending -->
 
+
 st.markdown("<h1 style='color: #19376D;'>Classification Of Myanmar Bank Note</h1>", unsafe_allow_html= True)
 
+
 if option == "Limitations":
-    # st.subheader("Limitation")
         st.markdown("<h3 style='color: #1A5F7A;'>Limitation</h3>", unsafe_allow_html= True)
         st.write("- We can only classify five or ten thousand kyats")
         st.write("- We are able to extract 3 notes of currency from one input image")
@@ -133,7 +127,6 @@ elif option == "Money Classification With Color Background":
         st.success("Your image has been uploaded")
         photo = Image.open(uploaded_file)
         st.image(photo, caption='Your image has been uploaded') 
-        # getSquares(image)
         image_path = "temp.jpg"
         photo.save(image_path)
         getSquares(image_path)
@@ -162,13 +155,6 @@ elif option == "Money Classification With Color Background":
 
 
             
-            
-
-
-
-
-
-
 elif option == ("Money Classification With White Background"):
     st.markdown("<h3 style='color: #1A5F7A;'>Money Classification With White Background</h3>", unsafe_allow_html= True)
     st.write("* This only predicts a bank note on a white background")
@@ -199,6 +185,3 @@ elif option == ("Money Classification With White Background"):
             else:
                 text = "It is 10000 kyat"
                 st.header(text)
-            voice = st.button("Text To Speech")
-            if voice:
-                text_to_speech(text)
