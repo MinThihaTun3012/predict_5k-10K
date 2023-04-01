@@ -6,7 +6,7 @@ from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 # import imutils
-# from imutils.perspective import four_point_transform
+from imutils.perspective import four_point_transform
 from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input as mobilenet_v2_preprocess_input
 
