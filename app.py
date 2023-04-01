@@ -5,6 +5,7 @@ import cv2
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
+import pyttsx3
 # import imutils
 from imutils.perspective import four_point_transform
 from tensorflow.keras.models import Sequential, load_model
