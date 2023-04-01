@@ -145,6 +145,7 @@ elif option == "Money Classification With Color Background":
             img_reshape = resized[np.newaxis, ...]
             
             prediction = model.predict(img_reshape)
+            st.header(prediction)
             
             if prediction >= 0.5:
   
