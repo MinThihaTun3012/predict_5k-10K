@@ -81,7 +81,7 @@ def getSquares(input):
     rect_cnts = sorted(rect_cnts, key=cv2.contourArea, reverse=True)
     
     
-    for i in range(0,len(rect_cnts),2):
+    for i in range(0,6,2):
         document = four_point_transform(img_copy, rect_cnts[i].reshape(4, 2))
         three_notes.append(document)
         #   print(type(document), document.shape,  'type of doc')
@@ -135,6 +135,29 @@ elif option == "Money Classification With Color Background":
         image_path = "temp.jpg"
         photo.save(image_path)
         getSquares(image_path)
+        
+        total = 0 
+        for i in three_notes:
+            
+            # Resize the image to 100x100
+            resized = cv2.resize(np.array(i), (100, 100))
+            resized = mobilenet_v2_preprocess_input(resized)
+            img_reshape = resized[np.newaxis, ...]
+            
+            prediction = model.predict(img_reshape)
+            
+            if prediction >= 0.5:
+  
+                 total += 5000
+            else:
+ 
+                 total += 10000
+        
+        st.header("Total Amount is ", total)
+
+
+            
+            
 
 
 
@@ -174,71 +197,3 @@ elif option == ("Money Classification With White Background"):
             voice = st.button("Text To Speech")
             if voice:
                 text_to_speech(text)
-                
-  
-
-
-       
-
-
-
-
-
-
-
-
-
-
-# three_notes = []
-
-# def show_images(titles , images, wait=True):
-#     """Display multiple images with one line of code"""
-
-#     for (title, image) in zip(titles, images): # why is zip 
-#         plt.title(title)
-#         plt.imshow(image)
-#         plt.axis("off")
-#         plt.show()
-
-# def getSquares(input):
-#     height = 600
-#     width = 800
-#     green = (0, 255, 0) # green color
-#     red = (0, 0, 255) # red color
-#     white = (255, 255, 255) # white color
-#     # questions = 5
-#     # answers = 5
-#     # correct_ans = [0, 2, 1, 3, 4]
-
-#     img = cv2.imread(ft)
-#     img = cv2.resize(img, (width, height))
-#     img_copy = img.copy() # for display purposes
-#     # img_copy1 = img.copy() # for display purposes
-
-#     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-#     blur_img = cv2.GaussianBlur(gray_img, (5, 5), 0)
-#     edge_img = cv2.Canny(blur_img, 20, 180) # adjust with 
-
-
-#     # find the contours in the image
-#     contours, _ = cv2.findContours(edge_img, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
-    
-#     # get rect cnts
-#     rect_cnts = []
-#     for cnt in contours:
-#         # approximate the contour
-#         peri = cv2.arcLength(cnt, True)
-#         approx = cv2.approxPolyDP(cnt, 0.02 * peri, True)
-#         # if the approximated contour is a rectangle ...
-#         if len(approx) == 4:
-#             # append it to our list
-#             rect_cnts.append(approx)
-#     # sort the contours from biggest to smallest
-#     rect_cnts = sorted(rect_cnts, key=cv2.contourArea, reverse=True)
-    
-    
-#     for i in range(0,6,2):
-#         document = four_point_transform(img_copy, rect_cnts[i].reshape(4, 2))
-#         three_notes.append(document)
-#         #   print(type(document), document.shape,  'type of doc')
-#         show_images(['image', 'document'],  [document])
