@@ -5,4 +5,3 @@ opencv-python-headless
 streamlit_option_menu 
 matplotlib
 imutils
-# pyttsx3
