@@ -15,7 +15,7 @@ from tensorflow.keras.applications.mobilenet_v2 import preprocess_input as mobil
 
 # Set page config
 st.set_page_config(
-    page_title = "Fake Momeny",
+    page_title = "Fake Money",
     page_icon = "img/dollar.jpg",
     layout="centered", 
     initial_sidebar_state="expanded"
@@ -94,7 +94,7 @@ def getSquares(input):
 
 # <--- factions end --->
 
-# A5D7E8
+
 
 #<--- slide starting --->
 
@@ -114,13 +114,13 @@ if option == "Limitations":
         st.write("- We can only classify five or ten thousand kyats")
         st.write("- We are able to extract 3 notes of currency from one input image")
         st.write("- Accuracy depends on the background of the image, more clear backgrounds make our model detect currency notes more precisely. ")
-        st.write("- White backgrounds make the model hard to extract the currency ")
-        st.write("- We will be able to calculate the total amount of money in the image and read it out loud for blind people")
+        st.write("- We will be able to calculate the total amount of money in the image")
 
 
 
 elif option == "Money Classification With Color Background":
     st.markdown("<h3 style='color: #1A5F7A;'>Money Classification With Color Background</h3>", unsafe_allow_html= True)
+    st.write("- White backgrounds make the model hard to extract the currency ")
 
     #load file
     uploaded_file = st.file_uploader("Upload Your Image",type=["png", "jpg"])
