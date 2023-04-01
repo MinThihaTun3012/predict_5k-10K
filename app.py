@@ -153,7 +153,8 @@ elif option == "Money Classification With Color Background":
  
                  total += 10000
         
-        st.header("Total Amount is ", total)
+        value = "The total Amount is",total,"Kyat"
+        st.success(value)
 
 
             
