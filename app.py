@@ -116,6 +116,8 @@ elif option == "Money Classification With Color Background":
     st.markdown("<h3 style='color: #1A5F7A;'>Money Classification With Color Background</h3>", unsafe_allow_html= True)
     st.write("- White backgrounds make the model hard to extract the currency ")
     st.write("- Messy background will make the model a bit hard to get bank notes from the image")
+    st.write("- We are able to extract exact 3 notes of currency from one input image")
+
 
     #load file
     uploaded_file = st.file_uploader("Upload Your Image",type=["png", "jpg"])
