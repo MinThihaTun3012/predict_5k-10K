@@ -32,7 +32,7 @@ st.set_page_config(
 
 # loaded the model from other path 
 def loadModel():
-    model = tf.keras.models.load_model("v7.h5",compile= False)
+    model = tf.keras.models.load_model("v6.h5",compile= False)
     return model
 
 model = loadModel()
