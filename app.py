@@ -143,15 +143,18 @@ elif option == "Money Classification With Color Background":
                 img_reshape = resized[np.newaxis, ...]
 
                 prediction = model.predict(img_reshape)
-                st.header(prediction)
+                
 
                 if prediction >= 0.5:
 
                      total += 5000
+                     st.write(5000)
                 else:
 
                      total += 10000
+                     st.write(10000)
 #             st.success(total)
+                   
         
             value = "The total Amount is",total,"Kyat"
             st.success(value)
