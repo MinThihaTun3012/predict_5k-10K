@@ -13,7 +13,7 @@ from tensorflow.keras.applications.mobilenet_v2 import preprocess_input as mobil
 
 # Set page config
 st.set_page_config(
-    page_title = "Fake Money",
+    page_title = "Money Classification",
     page_icon = "img/dollar.jpg",
     layout="centered", 
     initial_sidebar_state="expanded"
@@ -24,15 +24,15 @@ st.set_page_config(
 #<---- functions start ---->
 
 
-# Define a function to convert text to speech
-def text_to_speech(text):
-    engine = pyttsx3.init()
-    engine.say(text)
-    engine.runAndWait()
+# # Define a function to convert text to speech
+# def text_to_speech(text):
+#     engine = pyttsx3.init()
+#     engine.say(text)
+#     engine.runAndWait()
 
 # loaded the model from other path 
 def loadModel():
-    model = tf.keras.models.load_model("v1.h5",compile= False)
+    model = tf.keras.models.load_model("v6.h5",compile= False)
     return model
 
 model = loadModel()
@@ -106,7 +106,7 @@ st.markdown("<h1 style='color: #19376D;'>Classification Of Myanmar Bank Note</h1
 if option == "Limitations":
         st.markdown("<h3 style='color: #1A5F7A;'>Limitation</h3>", unsafe_allow_html= True)
         st.write("- We can only classify five or ten thousand kyats")
-        st.write("- We are able to extract 3 notes of currency from one input image")
+        st.write("- We are able to extract exact 3 notes of currency from one input image")
         st.write("- Accuracy depends on the background of the image, more clear backgrounds make our model detect currency notes more precisely. ")
         st.write("- We will be able to calculate the total amount of money in the image")
 
@@ -131,27 +131,30 @@ elif option == "Money Classification With Color Background":
         photo.save(image_path)
         getSquares(image_path)
         
-        total = 0 
-        for i in three_notes:
+        generate = st.button('Genrate Prediction')
+        if genrate:
             
-            # Resize the image to 100x100
-            resized = cv2.resize(np.array(i), (100, 100))
-            resized = mobilenet_v2_preprocess_input(resized)
-            img_reshape = resized[np.newaxis, ...]
-            
-            prediction = model.predict(img_reshape)
-            st.header(prediction)
-            
-            if prediction >= 0.5:
-  
-                 total += 5000
-            else:
- 
-                 total += 10000
-            st.success(total)
+            total = 0 
+            for i in three_notes:
+
+                # Resize the image to 100x100
+                resized = cv2.resize(np.array(i), (100, 100))
+                resized = mobilenet_v2_preprocess_input(resized)
+                img_reshape = resized[np.newaxis, ...]
+
+                prediction = model.predict(img_reshape)
+                st.header(prediction)
+
+                if prediction >= 0.5:
+
+                     total += 5000
+                else:
+
+                     total += 10000
+#             st.success(total)
         
-        value = "The total Amount is",total,"Kyat"
-        st.success(value)
+            value = "The total Amount is",total,"Kyat"
+            st.success(value)
 
 
             
@@ -176,7 +179,7 @@ elif option == ("Money Classification With White Background"):
         resized = mobilenet_v2_preprocess_input(resized)
         img_reshape = resized[np.newaxis, ...]
 
-        genrate = st.button('Genrate Prediction')
+        generate = st.button('Genrate Prediction')
         if genrate:
             prediction = model.predict(img_reshape)
             if prediction >= 0.5:
