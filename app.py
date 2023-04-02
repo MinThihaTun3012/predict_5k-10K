@@ -132,7 +132,7 @@ elif option == "Money Classification With Color Background":
         getSquares(image_path)
         
         generate = st.button('Genrate Prediction')
-        if genrate:
+        if generate:
             
             total = 0 
             for i in three_notes:
@@ -180,7 +180,7 @@ elif option == ("Money Classification With White Background"):
         img_reshape = resized[np.newaxis, ...]
 
         generate = st.button('Genrate Prediction')
-        if genrate:
+        if generate:
             prediction = model.predict(img_reshape)
             if prediction >= 0.5:
                 text = "It is 5000 kyat"
